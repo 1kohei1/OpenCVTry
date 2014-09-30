@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "ImageHandler.h"
+#import <opencv2/imgcodecs/ios.h>
 
 @interface ViewController ()
 
@@ -18,7 +20,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    ImageHandler *imageHandler = [[ImageHandler alloc]init];
+    UIImage *originalImage, *grayImage;
+    cv::Mat originalImageMat, grayImageMat;
+    
+    originalImage = [UIImage imageNamed:@"OCR_Test1_Original.JPG"];
+    originalImageMat = [imageHandler cvMatFromUIImage:originalImage];
+    cv::cvtColor(originalImageMat, grayImageMat, CV_RGBA2GRAY);
 }
+
 
 - (void)didReceiveMemoryWarning
 {
