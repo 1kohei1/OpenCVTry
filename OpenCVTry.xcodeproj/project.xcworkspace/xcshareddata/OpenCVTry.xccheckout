@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E28A0880-5B56-4207-983D-B984AF68372B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>OpenCVTry</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E03A17CA0612E5754D6E328B10FEAC7B1AD5034B</key>
+		<string>https://github.com/1kohei1/OpenCVTry.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>OpenCVTry.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E03A17CA0612E5754D6E328B10FEAC7B1AD5034B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/1kohei1/OpenCVTry.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E03A17CA0612E5754D6E328B10FEAC7B1AD5034B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E03A17CA0612E5754D6E328B10FEAC7B1AD5034B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>OpenCVTry</string>
+		</dict>
+	</array>
+</dict>
+</plist>
