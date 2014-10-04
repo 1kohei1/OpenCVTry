@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#define CV_RGBA2GRAY 11
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;

@@ -21,13 +21,29 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    ImageHandler *imageHandler = [[ImageHandler alloc]init];
-    UIImage *originalImage, *grayImage;
-    cv::Mat originalImageMat, grayImageMat;
+    UIImage *image = [UIImage imageNamed:@"lena.png"];
     
-    originalImage = [UIImage imageNamed:@"OCR_Test1_Original.JPG"];
-    originalImageMat = [imageHandler cvMatFromUIImage:originalImage];
-    cv::cvtColor(originalImageMat, grayImageMat, CV_RGBA2GRAY);
+    // Convert to UIImage to cv::Mat
+    cv::Mat cvImage;
+    UIImageToMat(image, cvImage);
+    
+    if (!cvImage.empty()) {
+        cv::Mat gray;
+        
+        // Convert the image to gray scale
+        cv::cvtColor(cvImage, gray, CV_RGBA2GRAY);
+        // Apply Gaussian filter to remove small edges
+        cv::GaussianBlur(gray, gray, cv::Size(5, 5), 1.2);
+        // Calculate edges with Canny
+        cv::Mat edges;
+        cv::Canny(gray, edges, 0, 50);
+        // Fill image with white color
+        cvImage.setTo(cv::Scalar::all(255));
+        // Change color on edges
+        cvImage.setTo(cv::Scalar(0, 0, 255, 255), edges);
+        // Convert cv::Mat to UIImage* and show the resulting image
+        self.imageView.image = MatToUIImage(cvImage);
+    }
 }
 
 

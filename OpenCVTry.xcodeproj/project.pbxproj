@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		196FED8A19D7286A000EDC9E /* OCR_Test1_Original.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 196FED8919D7286A000EDC9E /* OCR_Test1_Original.JPG */; };
 		196FED8F19D73FBF000EDC9E /* ImageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 196FED8E19D73FBF000EDC9E /* ImageHandler.m */; };
-		196FED9119D74324000EDC9E /* IMG_1196.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 196FED9019D74324000EDC9E /* IMG_1196.JPG */; };
+		196FED9319E04252000EDC9E /* lena.png in Resources */ = {isa = PBXBuildFile; fileRef = 196FED9219E04252000EDC9E /* lena.png */; };
 		1978F5EC19C89E4C001653E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1978F5EB19C89E4C001653E2 /* Foundation.framework */; };
 		1978F5EE19C89E4C001653E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1978F5ED19C89E4C001653E2 /* CoreGraphics.framework */; };
 		1978F5F019C89E4C001653E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1978F5EF19C89E4C001653E2 /* UIKit.framework */; };
@@ -41,7 +41,7 @@
 		196FED8919D7286A000EDC9E /* OCR_Test1_Original.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = OCR_Test1_Original.JPG; sourceTree = "<group>"; };
 		196FED8D19D73FBF000EDC9E /* ImageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageHandler.h; path = ../ImageHandler.h; sourceTree = "<group>"; };
 		196FED8E19D73FBF000EDC9E /* ImageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageHandler.m; path = ../ImageHandler.m; sourceTree = "<group>"; };
-		196FED9019D74324000EDC9E /* IMG_1196.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1196.JPG; sourceTree = "<group>"; };
+		196FED9219E04252000EDC9E /* lena.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lena.png; path = ../lena.png; sourceTree = "<group>"; };
 		1978F5E819C89E4C001653E2 /* OpenCVTry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCVTry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1978F5EB19C89E4C001653E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1978F5ED19C89E4C001653E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -139,8 +139,8 @@
 		1978F5F219C89E4C001653E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				196FED9219E04252000EDC9E /* lena.png */,
 				196FED8919D7286A000EDC9E /* OCR_Test1_Original.JPG */,
-				196FED9019D74324000EDC9E /* IMG_1196.JPG */,
 				1978F5F319C89E4C001653E2 /* OpenCVTry-Info.plist */,
 				1978F5F419C89E4C001653E2 /* InfoPlist.strings */,
 				1978F5F719C89E4C001653E2 /* main.m */,
@@ -244,9 +244,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1978F60419C89E4D001653E2 /* Images.xcassets in Resources */,
+				196FED9319E04252000EDC9E /* lena.png in Resources */,
 				196FED8A19D7286A000EDC9E /* OCR_Test1_Original.JPG in Resources */,
 				1978F5F619C89E4C001653E2 /* InfoPlist.strings in Resources */,
-				196FED9119D74324000EDC9E /* IMG_1196.JPG in Resources */,
 				1978F5FF19C89E4D001653E2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
