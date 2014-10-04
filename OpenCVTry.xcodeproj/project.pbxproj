@@ -13,6 +13,7 @@
 		196FED9719E05C60000EDC9E /* PostcardPrinter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 196FED9519E05C60000EDC9E /* PostcardPrinter.cpp */; };
 		196FED9A19E065BB000EDC9E /* text.png in Resources */ = {isa = PBXBuildFile; fileRef = 196FED9819E065BB000EDC9E /* text.png */; };
 		196FED9B19E065BB000EDC9E /* texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 196FED9919E065BB000EDC9E /* texture.jpg */; };
+		196FED9E19E07B97000EDC9E /* sudoku_img.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 196FED9D19E07B97000EDC9E /* sudoku_img.jpg */; };
 		1978F5EC19C89E4C001653E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1978F5EB19C89E4C001653E2 /* Foundation.framework */; };
 		1978F5EE19C89E4C001653E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1978F5ED19C89E4C001653E2 /* CoreGraphics.framework */; };
 		1978F5F019C89E4C001653E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1978F5EF19C89E4C001653E2 /* UIKit.framework */; };
@@ -50,6 +51,7 @@
 		196FED9819E065BB000EDC9E /* text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text.png; sourceTree = "<group>"; };
 		196FED9919E065BB000EDC9E /* texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.jpg; sourceTree = "<group>"; };
 		196FED9C19E0664B000EDC9E /* OpenCVConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OpenCVConstants.h; path = ../OpenCVConstants.h; sourceTree = "<group>"; };
+		196FED9D19E07B97000EDC9E /* sudoku_img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sudoku_img.jpg; sourceTree = "<group>"; };
 		1978F5E819C89E4C001653E2 /* OpenCVTry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCVTry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1978F5EB19C89E4C001653E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1978F5ED19C89E4C001653E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -150,6 +152,7 @@
 		1978F5F219C89E4C001653E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				196FED9D19E07B97000EDC9E /* sudoku_img.jpg */,
 				196FED9219E04252000EDC9E /* lena.png */,
 				196FED9819E065BB000EDC9E /* text.png */,
 				196FED9919E065BB000EDC9E /* texture.jpg */,
@@ -260,6 +263,7 @@
 				196FED9B19E065BB000EDC9E /* texture.jpg in Resources */,
 				196FED9319E04252000EDC9E /* lena.png in Resources */,
 				196FED9A19E065BB000EDC9E /* text.png in Resources */,
+				196FED9E19E07B97000EDC9E /* sudoku_img.jpg in Resources */,
 				196FED8A19D7286A000EDC9E /* OCR_Test1_Original.JPG in Resources */,
 				1978F5F619C89E4C001653E2 /* InfoPlist.strings in Resources */,
 				1978F5FF19C89E4D001653E2 /* Main.storyboard in Resources */,

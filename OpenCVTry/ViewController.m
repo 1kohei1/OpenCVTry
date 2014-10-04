@@ -25,9 +25,47 @@
 {
     [super viewDidLoad];
     
-    /*
-    UIImage *image = [UIImage imageNamed:@"lena.png"];
+    /* Sudoku Practice
+    NSString *sudoku = @"sudoku_img.jpg";
+    NSString *ocr = @"OCR_Test1_Original.jpg";
+    NSString *lena = @"lena.png";
+    
+    UIImage *sudokuImg = [UIImage imageNamed:sudoku];
+    cv::Mat cvImage;
+    UIImageToMat(sudokuImg, cvImage);
+    
+    if (cvImage.empty())
+        return;
+    
+    // Begin to measure time
+    int64 timeStart = cv::getTickCount();
 
+    cv::Mat sudokuGray;
+    cv::cvtColor(cvImage, sudokuGray, CV_RGBA2GRAY); // Black and white
+    cv::GaussianBlur(sudokuGray, sudokuGray, cv::Size(5, 5), 1.2); //Gaussian filter
+    cv::adaptiveThreshold(sudokuGray, sudokuGray, 500, cv::ADAPTIVE_THRESH_MEAN_C, cv::THRESH_BINARY, 3, 0); // Threshold
+    
+    // Finish to measure time
+    int64 timeEnd = cv::getTickCount();
+    float durationMs = 1000.f * float(timeEnd - timeStart) / cv::getTickFrequency();
+    NSLog(@"Time = %.3fms", durationMs);
+    
+    self.imageView.image = MatToUIImage(sudokuGray);
+     */
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void) pastCode {
+    /*
+    // Highlight edges
+    UIImage *image = [UIImage imageNamed:@"lena.png"];
+    
     // Convert to UIImage to cv::Mat
     cv::Mat cvImage;
     UIImageToMat(image, cvImage);
@@ -51,19 +89,16 @@
     }
      */
     
-    
+    // Create a Postcard
     PostcardPrinter::Parameters params;
     
-    // Load image with face
     UIImage* image = [UIImage imageNamed:@"lena.png"];
     UIImageToMat(image, params.face);
     
-    // Load image with texture
     image = [UIImage imageNamed:@"texture.jpg"];
     UIImageToMat(image, params.texture);
     cvtColor(params.texture, params.texture, CV_RGBA2RGB);
     
-    // Load image with text
     image = [UIImage imageNamed:@"text.png"];
     UIImageToMat(image, params.text, true);
     
@@ -80,13 +115,7 @@
     NSLog(@"Printing time = %.3fms", durationMs);
     
     if (!postcard.empty())
-        self.imageView.image = MatToUIImage(postcard);}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+        self.imageView.image = MatToUIImage(postcard);
 }
 
 @end
