@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "ImageHandler.h"
+#import "OpenCVConstants.h"
+#import "PostcardPrinter.hpp"
 #import <opencv2/imgcodecs/ios.h>
 
 @interface ViewController ()
@@ -16,13 +17,17 @@
 
 @implementation ViewController
 
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
+    /*
     UIImage *image = [UIImage imageNamed:@"lena.png"];
-    
+
     // Convert to UIImage to cv::Mat
     cv::Mat cvImage;
     UIImageToMat(image, cvImage);
@@ -44,7 +49,38 @@
         // Convert cv::Mat to UIImage* and show the resulting image
         self.imageView.image = MatToUIImage(cvImage);
     }
-}
+     */
+    
+    
+    PostcardPrinter::Parameters params;
+    
+    // Load image with face
+    UIImage* image = [UIImage imageNamed:@"lena.png"];
+    UIImageToMat(image, params.face);
+    
+    // Load image with texture
+    image = [UIImage imageNamed:@"texture.jpg"];
+    UIImageToMat(image, params.texture);
+    cvtColor(params.texture, params.texture, CV_RGBA2RGB);
+    
+    // Load image with text
+    image = [UIImage imageNamed:@"text.png"];
+    UIImageToMat(image, params.text, true);
+    
+    // Create PostcardPrinter class
+    PostcardPrinter postcardPrinter(params);
+    
+    // Print postcard, and measure printing time
+    cv::Mat postcard;
+    int64 timeStart = cv::getTickCount();
+    postcardPrinter.print(postcard);
+    int64 timeEnd = cv::getTickCount();
+    float durationMs =
+    1000.f * float(timeEnd - timeStart) / cv::getTickFrequency();
+    NSLog(@"Printing time = %.3fms", durationMs);
+    
+    if (!postcard.empty())
+        self.imageView.image = MatToUIImage(postcard);}
 
 
 - (void)didReceiveMemoryWarning

@@ -10,6 +10,9 @@
 		196FED8A19D7286A000EDC9E /* OCR_Test1_Original.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 196FED8919D7286A000EDC9E /* OCR_Test1_Original.JPG */; };
 		196FED8F19D73FBF000EDC9E /* ImageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 196FED8E19D73FBF000EDC9E /* ImageHandler.m */; };
 		196FED9319E04252000EDC9E /* lena.png in Resources */ = {isa = PBXBuildFile; fileRef = 196FED9219E04252000EDC9E /* lena.png */; };
+		196FED9719E05C60000EDC9E /* PostcardPrinter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 196FED9519E05C60000EDC9E /* PostcardPrinter.cpp */; };
+		196FED9A19E065BB000EDC9E /* text.png in Resources */ = {isa = PBXBuildFile; fileRef = 196FED9819E065BB000EDC9E /* text.png */; };
+		196FED9B19E065BB000EDC9E /* texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 196FED9919E065BB000EDC9E /* texture.jpg */; };
 		1978F5EC19C89E4C001653E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1978F5EB19C89E4C001653E2 /* Foundation.framework */; };
 		1978F5EE19C89E4C001653E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1978F5ED19C89E4C001653E2 /* CoreGraphics.framework */; };
 		1978F5F019C89E4C001653E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1978F5EF19C89E4C001653E2 /* UIKit.framework */; };
@@ -42,6 +45,11 @@
 		196FED8D19D73FBF000EDC9E /* ImageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageHandler.h; path = ../ImageHandler.h; sourceTree = "<group>"; };
 		196FED8E19D73FBF000EDC9E /* ImageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageHandler.m; path = ../ImageHandler.m; sourceTree = "<group>"; };
 		196FED9219E04252000EDC9E /* lena.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lena.png; path = ../lena.png; sourceTree = "<group>"; };
+		196FED9519E05C60000EDC9E /* PostcardPrinter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PostcardPrinter.cpp; path = ../PostcardPrinter.cpp; sourceTree = "<group>"; };
+		196FED9619E05C60000EDC9E /* PostcardPrinter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PostcardPrinter.hpp; path = ../PostcardPrinter.hpp; sourceTree = "<group>"; };
+		196FED9819E065BB000EDC9E /* text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text.png; sourceTree = "<group>"; };
+		196FED9919E065BB000EDC9E /* texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.jpg; sourceTree = "<group>"; };
+		196FED9C19E0664B000EDC9E /* OpenCVConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OpenCVConstants.h; path = ../OpenCVConstants.h; sourceTree = "<group>"; };
 		1978F5E819C89E4C001653E2 /* OpenCVTry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCVTry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1978F5EB19C89E4C001653E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1978F5ED19C89E4C001653E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -123,6 +131,7 @@
 		1978F5F119C89E4C001653E2 /* OpenCVTry */ = {
 			isa = PBXGroup;
 			children = (
+				196FED9C19E0664B000EDC9E /* OpenCVConstants.h */,
 				1978F5FA19C89E4C001653E2 /* AppDelegate.h */,
 				1978F5FB19C89E4C001653E2 /* AppDelegate.m */,
 				1978F5FD19C89E4D001653E2 /* Main.storyboard */,
@@ -130,6 +139,8 @@
 				1978F60119C89E4D001653E2 /* ViewController.m */,
 				196FED8D19D73FBF000EDC9E /* ImageHandler.h */,
 				196FED8E19D73FBF000EDC9E /* ImageHandler.m */,
+				196FED9619E05C60000EDC9E /* PostcardPrinter.hpp */,
+				196FED9519E05C60000EDC9E /* PostcardPrinter.cpp */,
 				1978F60319C89E4D001653E2 /* Images.xcassets */,
 				1978F5F219C89E4C001653E2 /* Supporting Files */,
 			);
@@ -140,6 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				196FED9219E04252000EDC9E /* lena.png */,
+				196FED9819E065BB000EDC9E /* text.png */,
+				196FED9919E065BB000EDC9E /* texture.jpg */,
 				196FED8919D7286A000EDC9E /* OCR_Test1_Original.JPG */,
 				1978F5F319C89E4C001653E2 /* OpenCVTry-Info.plist */,
 				1978F5F419C89E4C001653E2 /* InfoPlist.strings */,
@@ -244,7 +257,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1978F60419C89E4D001653E2 /* Images.xcassets in Resources */,
+				196FED9B19E065BB000EDC9E /* texture.jpg in Resources */,
 				196FED9319E04252000EDC9E /* lena.png in Resources */,
+				196FED9A19E065BB000EDC9E /* text.png in Resources */,
 				196FED8A19D7286A000EDC9E /* OCR_Test1_Original.JPG in Resources */,
 				1978F5F619C89E4C001653E2 /* InfoPlist.strings in Resources */,
 				1978F5FF19C89E4D001653E2 /* Main.storyboard in Resources */,
@@ -267,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1978F60219C89E4D001653E2 /* ViewController.m in Sources */,
+				196FED9719E05C60000EDC9E /* PostcardPrinter.cpp in Sources */,
 				1978F5FC19C89E4C001653E2 /* AppDelegate.m in Sources */,
 				196FED8F19D73FBF000EDC9E /* ImageHandler.m in Sources */,
 				1978F5F819C89E4C001653E2 /* main.m in Sources */,
