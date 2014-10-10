@@ -25,34 +25,46 @@
 {
     [super viewDidLoad];
     
-    /* Sudoku Practice
-    NSString *sudoku = @"sudoku_img.jpg";
-    NSString *ocr = @"OCR_Test1_Original.jpg";
-    NSString *lena = @"lena.png";
+    /****************************** Face Detection */
+    // Load cascade classifier from the XML file
+    NSString *cascadePath = [[NSBundle mainBundle] pathForResource:@"haarcascade_frontalface_alt2" ofType:@"xml"];
+    faceDetector.load([cascadePath UTF8String]);
     
-    UIImage *sudokuImg = [UIImage imageNamed:sudoku];
-    cv::Mat cvImage;
-    UIImageToMat(sudokuImg, cvImage);
+    // Load image with face
+    UIImage *image = [UIImage imageNamed:@"group_of_people_faces.jpg"];
+    cv::Mat faceImage;
+    UIImageToMat(image, faceImage);
     
-    if (cvImage.empty())
-        return;
+    // Convert to grayscale
+    cv::Mat gray;
+    cv::cvtColor(faceImage, gray, CV_BGR2GRAY);
     
-    // Begin to measure time
-    int64 timeStart = cv::getTickCount();
+    // Detect faces
+    std::vector<cv::Rect> faces;
+    std::vector<cv::Mat> faceImages;
+    faceDetector.detectMultiScale(gray, faces);
+    
+    // Draw all detected faces
+    for (unsigned int i = 0; i < faces.size(); i++) {
+        cv::Mat cutImage;
+        const cv::Rect face = faces[i];
+        // Get top-left and bottom-right corner points
+        
+        cv::Point tl(face.x, face.y);
+        cv::Point br = tl + cv::Point(face.width, face.height);
+        
+        // Draw rectangle around the face
+        cv::Scalar magenta = cv::Scalar(255, 0, 255);
+        cv::rectangle(faceImage, tl, br, magenta, 4, 8, 0);
+        
+        // Cut image and store it to the array
+        faceImage(face).copyTo(cutImage);
+        faceImages.push_back(cutImage);
+    }
 
-    cv::Mat sudokuGray;
-    cv::cvtColor(cvImage, sudokuGray, CV_RGBA2GRAY); // Black and white
-    cv::GaussianBlur(sudokuGray, sudokuGray, cv::Size(5, 5), 1.2); //Gaussian filter
-    cv::adaptiveThreshold(sudokuGray, sudokuGray, 500, cv::ADAPTIVE_THRESH_MEAN_C, cv::THRESH_BINARY, 3, 0); // Threshold
-    
-    // Finish to measure time
-    int64 timeEnd = cv::getTickCount();
-    float durationMs = 1000.f * float(timeEnd - timeStart) / cv::getTickFrequency();
-    NSLog(@"Time = %.3fms", durationMs);
-    
-    self.imageView.image = MatToUIImage(sudokuGray);
-     */
-    
+    // Show resulting image
+    NSLog(@"%lu", faceImages.size());
+    self.imageView.image = MatToUIImage(faceImages[2]);
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,7 +74,7 @@
 }
 
 - (void) pastCode {
-    /*
+    /******************************
     // Highlight edges
     UIImage *image = [UIImage imageNamed:@"lena.png"];
     
@@ -87,9 +99,9 @@
         // Convert cv::Mat to UIImage* and show the resulting image
         self.imageView.image = MatToUIImage(cvImage);
     }
-     */
+     ******************************/
     
-    // Create a Postcard
+    /****************************** Create a Postcard
     PostcardPrinter::Parameters params;
     
     UIImage* image = [UIImage imageNamed:@"lena.png"];
@@ -116,6 +128,36 @@
     
     if (!postcard.empty())
         self.imageView.image = MatToUIImage(postcard);
+     ******************************/
+    
+    /****************************** Sudoku Practice
+     NSString *sudoku = @"sudoku_img.jpg";
+     NSString *ocr = @"OCR_Test1_Original.jpg";
+     NSString *lena = @"lena.png";
+     
+     UIImage *sudokuImg = [UIImage imageNamed:sudoku];
+     cv::Mat cvImage;
+     UIImageToMat(sudokuImg, cvImage);
+     
+     if (cvImage.empty())
+     return;
+     
+     // Begin to measure time
+     int64 timeStart = cv::getTickCount();
+     
+     cv::Mat sudokuGray;
+     cv::cvtColor(cvImage, sudokuGray, CV_RGBA2GRAY); // Black and white
+     cv::GaussianBlur(sudokuGray, sudokuGray, cv::Size(5, 5), 1.2); //Gaussian filter
+     cv::adaptiveThreshold(sudokuGray, sudokuGray, 500, cv::ADAPTIVE_THRESH_MEAN_C, cv::THRESH_BINARY, 3, 0); // Threshold
+     
+     // Finish to measure time
+     int64 timeEnd = cv::getTickCount();
+     float durationMs = 1000.f * float(timeEnd - timeStart) / cv::getTickFrequency();
+     NSLog(@"Time = %.3fms", durationMs);
+     
+     self.imageView.image = MatToUIImage(sudokuGray);
+     ******************************/
+
 }
 
 @end

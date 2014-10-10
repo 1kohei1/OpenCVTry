@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+    cv::CascadeClassifier faceDetector;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
