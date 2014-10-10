@@ -25,46 +25,7 @@
 {
     [super viewDidLoad];
     
-    /****************************** Face Detection */
-    // Load cascade classifier from the XML file
-    NSString *cascadePath = [[NSBundle mainBundle] pathForResource:@"haarcascade_frontalface_alt2" ofType:@"xml"];
-    faceDetector.load([cascadePath UTF8String]);
     
-    // Load image with face
-    UIImage *image = [UIImage imageNamed:@"group_of_people_faces.jpg"];
-    cv::Mat faceImage;
-    UIImageToMat(image, faceImage);
-    
-    // Convert to grayscale
-    cv::Mat gray;
-    cv::cvtColor(faceImage, gray, CV_BGR2GRAY);
-    
-    // Detect faces
-    std::vector<cv::Rect> faces;
-    std::vector<cv::Mat> faceImages;
-    faceDetector.detectMultiScale(gray, faces);
-    
-    // Draw all detected faces
-    for (unsigned int i = 0; i < faces.size(); i++) {
-        cv::Mat cutImage;
-        const cv::Rect face = faces[i];
-        // Get top-left and bottom-right corner points
-        
-        cv::Point tl(face.x, face.y);
-        cv::Point br = tl + cv::Point(face.width, face.height);
-        
-        // Draw rectangle around the face
-        cv::Scalar magenta = cv::Scalar(255, 0, 255);
-        cv::rectangle(faceImage, tl, br, magenta, 4, 8, 0);
-        
-        // Cut image and store it to the array
-        faceImage(face).copyTo(cutImage);
-        faceImages.push_back(cutImage);
-    }
-
-    // Show resulting image
-    NSLog(@"%lu", faceImages.size());
-    self.imageView.image = MatToUIImage(faceImages[2]);
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,32 +63,33 @@
      ******************************/
     
     /****************************** Create a Postcard
-    PostcardPrinter::Parameters params;
-    
-    UIImage* image = [UIImage imageNamed:@"lena.png"];
-    UIImageToMat(image, params.face);
-    
-    image = [UIImage imageNamed:@"texture.jpg"];
-    UIImageToMat(image, params.texture);
-    cvtColor(params.texture, params.texture, CV_RGBA2RGB);
-    
-    image = [UIImage imageNamed:@"text.png"];
-    UIImageToMat(image, params.text, true);
-    
-    // Create PostcardPrinter class
-    PostcardPrinter postcardPrinter(params);
-    
-    // Print postcard, and measure printing time
-    cv::Mat postcard;
-    int64 timeStart = cv::getTickCount();
-    postcardPrinter.print(postcard);
-    int64 timeEnd = cv::getTickCount();
-    float durationMs =
-    1000.f * float(timeEnd - timeStart) / cv::getTickFrequency();
-    NSLog(@"Printing time = %.3fms", durationMs);
-    
-    if (!postcard.empty())
-        self.imageView.image = MatToUIImage(postcard);
+     // Crate a PostcardPrinter parameter variable whose name is params
+     PostcardPrinter::Parameters params;
+     
+     // Set the parameters
+     UIImage* image = [UIImage imageNamed:@"lena.png"];
+     UIImageToMat(image, params.face);
+     
+     image = [UIImage imageNamed:@"texture.jpg"];
+     UIImageToMat(image, params.texture);
+     cvtColor(params.texture, params.texture, CV_RGBA2RGB);
+     
+     image = [UIImage imageNamed:@"text.png"];
+     UIImageToMat(image, params.text, true);
+     
+     // Create PostcardPrinter class
+     PostcardPrinter postcardPrinter(params);
+     
+     // Print postcard, and measure printing time
+     cv::Mat postcard;
+     int64 timeStart = cv::getTickCount();
+     postcardPrinter.print(postcard);
+     int64 timeEnd = cv::getTickCount();
+     float durationMs = 1000.f * float(timeEnd - timeStart) / cv::getTickFrequency();
+     NSLog(@"Printing time = %.3fms", durationMs);
+     
+     if (!postcard.empty())
+     self.imageView.image = MatToUIImage(postcard);
      ******************************/
     
     /****************************** Sudoku Practice
@@ -157,7 +119,48 @@
      
      self.imageView.image = MatToUIImage(sudokuGray);
      ******************************/
-
+    
+    /****************************** Face Detection
+     // Load cascade classifier from the XML file
+     NSString *cascadePath = [[NSBundle mainBundle] pathForResource:@"haarcascade_frontalface_alt2" ofType:@"xml"];
+     faceDetector.load([cascadePath UTF8String]);
+     
+     // Load image with face
+     UIImage *image = [UIImage imageNamed:@"lena.png"];
+     cv::Mat faceImage;
+     UIImageToMat(image, faceImage);
+     
+     // Convert to grayscale
+     cv::Mat gray;
+     cv::cvtColor(faceImage, gray, CV_BGR2GRAY);
+     
+     // Detect faces
+     std::vector<cv::Rect> faces;
+     std::vector<cv::Mat> faceImages;
+     faceDetector.detectMultiScale(gray, faces);
+     
+     // Draw all detected faces
+     for (unsigned int i = 0; i < faces.size(); i++) {
+     cv::Mat cutImage;
+     const cv::Rect face = faces[i];
+     //        Variables are declared without equal(=) sign!!
+     //        cv::Point tl(face.x, face.y);
+     //        cv::Rect rect(100, 100, 100, 100);
+     //        cv::Scalar scalar(10, 100);
+     
+     // Draw rectangle around the face
+     cv::Scalar magenta = cv::Scalar(255, 0, 255);
+     cv::rectangle(faceImage, face.tl(), face.br(), magenta, 4, 8, 0);
+     
+     // Cut image and store it to the array
+     faceImage(face).copyTo(cutImage);
+     faceImages.push_back(cutImage);
+     }
+     
+     // Show resulting image
+     //    self.imageView.image = MatToUIImage(faceImages[2]);
+     self.imageView.image = MatToUIImage(faceImage);
+     ******************************/
 }
 
 @end
