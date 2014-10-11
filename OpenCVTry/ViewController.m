@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "OpenCVConstants.h"
 #import "PostcardPrinter.hpp"
+#import "RetroFilter.h"
 #import <opencv2/imgcodecs/ios.h>
 
 @interface ViewController ()
@@ -16,6 +17,16 @@
 @end
 
 @implementation ViewController
+
+
+// Macros for time measurements
+#if 1
+    #define TS(name) int64 t_##name = cv::getTickCount()
+    #define TE(name) printf("TIMER_" #name ": %.2fms\n", \ 1000.*((cv::getTickCount() - t_##name) / cv::getTickFrequency()))
+#else
+    #define TS(name)
+    #define TE(name)
+#endif
 
 - (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
@@ -25,7 +36,25 @@
 {
     [super viewDidLoad];
     
+    UIImage *lena = [UIImage imageNamed:@"lena.png"];
+    UIImage *fuzzyBorder = [UIImage imageNamed:@"fuzzyBorder.png"];
+    UIImage *scratches = [UIImage imageNamed:@"scratches.png"];
     
+    cv::Mat matLena, matFuzzyBorder, matScratches;
+    UIImageToMat(lena, matLena);
+    UIImageToMat(fuzzyBorder, matFuzzyBorder);
+    UIImageToMat(scratches, matScratches);
+    
+    RetroFilter::Parameters params;
+    params.frameSize = matLena.size();
+    params.fuzzyBorder = matFuzzyBorder;
+    params.scratches = matScratches;
+    
+    cv::Mat retroImage;
+    RetroFilter retroFilter = RetroFilter(params);
+    retroFilter.applyToPhoto(matLena, retroImage);
+    
+    self.imageView.image = MatToUIImage(retroImage);
 }
 
 - (void)didReceiveMemoryWarning

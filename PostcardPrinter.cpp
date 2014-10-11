@@ -68,7 +68,7 @@ void PostcardPrinter::print(Mat& postcard) const {
     Mat placeForText = postcard(textRoi_);
 
     printFragment(placeForFace, params_.face);
-//    printFragment(placeForText, params_.text);
+    printFragment(placeForText, params_.text);
 }
 
 void PostcardPrinter::crumple(Mat& image, const Mat& texture,
