@@ -48,14 +48,15 @@ void PostcardPrinter::printFragment(Mat& placeForFragment,
                                     const Mat& fragment) const {
     // Get alpha channel
     vector<Mat> fragmentPlanes;
-    split(fragment, fragmentPlanes);
-    CV_Assert(fragmentPlanes.size() == 4);
-    Mat alpha = fragmentPlanes[3];
-    fragmentPlanes.pop_back();
-    Mat bgrFragment;
-    merge(fragmentPlanes, bgrFragment);
+    split(fragment, fragmentPlanes); // divide mat into channel blue, green, red, alpha
+    CV_Assert(fragmentPlanes.size() == 4); // check if there are 4 channels
     
-    // Add fragment with curmpling and plane
+    Mat alpha = fragmentPlanes[3]; // get alpha channel
+    fragmentPlanes.pop_back(); // drop alpha channel from the fragmentPlanes
+    Mat bgrFragment; // create a variable to store blue, green, red channel
+    merge(fragmentPlanes, bgrFragment); // set blue, green, red channel into one mat called bgrFragment
+    
+    // Add fragment with crumpling and plane
     crumple(bgrFragment, placeForFragment, alpha);
     alphaBlendC3(bgrFragment, placeForFragment, alpha);
 }
@@ -65,9 +66,9 @@ void PostcardPrinter::print(Mat& postcard) const {
     
     Mat placeForFace = postcard(faceRoi_);
     Mat placeForText = postcard(textRoi_);
-    
+
     printFragment(placeForFace, params_.face);
-    printFragment(placeForText, params_.text);
+//    printFragment(placeForText, params_.text);
 }
 
 void PostcardPrinter::crumple(Mat& image, const Mat& texture,
@@ -78,9 +79,9 @@ void PostcardPrinter::crumple(Mat& image, const Mat& texture,
     relief = 255 - relief;
     
     Mat hsvImage;
-    vector<Mat> planes;
     cvtColor(image, hsvImage, CV_BGR2HSV);
     
+    vector<Mat> planes;
     split(hsvImage, planes);
     CV_Assert(planes.size() == 3);
     subtract(planes[2], relief, planes[2], mask);
@@ -99,8 +100,7 @@ void PostcardPrinter::alphaBlendC3(const Mat& src, Mat& dst,
             if (alpha_value != 0)
             {
                 float weight = float(alpha_value) / 255.f;
-                dst.at<Vec3b>(i, j) = weight * src.at<Vec3b>(i, j) +
-                (1 - weight) * dst.at<Vec3b>(i, j);
+                dst.at<Vec3b>(i, j) = weight * src.at<Vec3b>(i, j) + (1 - weight) * dst.at<Vec3b>(i, j);
             }
         }
 }

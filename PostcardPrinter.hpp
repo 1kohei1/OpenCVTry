@@ -18,6 +18,7 @@ public:
         cv::Mat text;
     };
     
+    // constructor
     PostcardPrinter(Parameters& parameters);
 //    virtual ~PostcardPrinter() {}
     
